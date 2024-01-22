@@ -1,0 +1,24 @@
+
+<% content = extract_excel_content(excel_blob) %>
+<% if content.present? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <% content.first.each do |header| %>
+          <th><%= header %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% content.drop(1).each do |row| %>
+        <tr>
+          <% row.each do |cell| %>
+            <td><%= cell %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  Unable to extract Excel content.
+<% end %>
