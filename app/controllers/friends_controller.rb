@@ -1,5 +1,5 @@
 class FriendsController < ApplicationController
-  before_action :set_friend, only: %i[ show edit update destroy ]
+  before_action :set_friend, only: %i[ show edit update destroy upload_file ]
   before_action :authenticate_user!,except: [:index, :show] 
   before_action :correct_user,only: [:edit,:update,:destroy]
 
@@ -22,8 +22,13 @@ class FriendsController < ApplicationController
   def edit
   end
 
+  # def upload_file
+  #  @friends.update(file: params[:document])
+  # end
+
   # POST /friends or /friends.json
   def create
+    puts "#{friend_params}"
     # @friend = Friend.new(friend_params)
     @friend=current_user.friends.build(friend_params)
 
@@ -40,6 +45,7 @@ class FriendsController < ApplicationController
 
   # PATCH/PUT /friends/1 or /friends/1.json
   def update
+    puts "#{friend_params}"
     respond_to do |format|
       if @friend.update(friend_params)
         format.html { redirect_to friend_url(@friend), notice: "Friend was successfully updated." }

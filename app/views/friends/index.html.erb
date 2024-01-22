@@ -1,5 +1,3 @@
-
-
 <table class="table table-striped table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
@@ -31,5 +29,13 @@
 <br>
 
 <%= link_to 'New Friend', new_friend_path , class:"btn btn-secondary" %>
+<h1>Upload a File</h1>
+
+<%= form_with(model: @document, local: true, html: { multipart: true }) do |form| %>
+  <%= form.file_field :document %>
+  <%= form.submit 'Upload' %>
+<% end %>
+
+
 
 
